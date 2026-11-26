@@ -1,0 +1,64 @@
+# Secrets & Sensitive Environment Configurations (NEVER COMMIT)
+.env
+*.env
+*.pem
+*.key
+credentials.json
+
+# Local SQLite Database & Runtime Files
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+*.log
+data/automation.db
+data/automation.db*
+data/automation.log
+data/daemon_state.json
+
+# Python Bytecode, Caches & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & Linting Caches
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# Streamlit Local Secrets
+.streamlit/secrets.toml
+
+# IDE & OS Metadata
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
