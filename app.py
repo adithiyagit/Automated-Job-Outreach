@@ -929,3 +929,21 @@ EXCLUDED_DOMAINS={blacklisted}
             with open(config.ENV_PATH, "w", encoding="utf-8") as f:
                 f.write(env_content)
             st.success("Settings saved to .env successfully!")
+
+    st.divider()
+
+    st.markdown("### 🔄 GitHub Repository & Auto-Sync")
+    st.caption("Synchronize and push all project files, templates, and scripts directly to your GitHub repository.")
+    git_c1, git_c2 = st.columns([3, 1.5])
+    with git_c1:
+        st.markdown("**Remote Repository:** [https://github.com/adithiyagit/Automated-Job-Outreach.git](https://github.com/adithiyagit/Automated-Job-Outreach.git)")
+        st.caption("Active Branch: `main` | Automatic background watcher: `python scripts/auto_git_sync.py --watch`")
+    with git_c2:
+        if st.button("🚀 Push to GitHub Now", use_container_width=True):
+            with st.spinner("Checking working tree and pushing changes to GitHub..."):
+                from scripts import auto_git_sync
+                ok, msg = auto_git_sync.auto_commit_and_push()
+                if ok:
+                    st.success(f"Git Sync Complete: {msg}")
+                else:
+                    st.info(f"Git Status: {msg}")
