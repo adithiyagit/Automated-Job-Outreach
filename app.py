@@ -335,6 +335,7 @@ btn_c1, btn_c2, btn_c3, btn_c4, btn_c5 = st.columns([3.2, 2, 2.2, 2, 2])
 with btn_c1:
     region_options = [
         ("all", "🌐 Global Round-Robin (All Countries Interleaved)"),
+        ("kerala", "🌴 Kerala Fast-Track (Kochi / Trivandrum / Calicut - 0-Day Local Joining)"),
         ("india", "🇮🇳 India Fast-Track (Immediate 0-Day Hiring)"),
         ("switzerland", "🇨🇭 Switzerland (DACH Odoo Practice)"),
         ("germany", "🇩🇪 Germany (Central Europe Odoo Practice)"),
