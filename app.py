@@ -611,7 +611,244 @@ with tab_mission:
     else:
         st.info("No activity logs recorded yet. Autopilot runs in the background automatically.")
 
-# ================= TAB 2: LEAD PIPELINE CRM =================
+# ================= TAB 2: LINKEDIN & INDEED RADAR =================
+with tab_radar:
+    st.subheader("🔗 LinkedIn Recruiter Co-Pilot & Indeed Job Radar")
+    st.caption(
+        "Zero-bot-ban networking co-pilot and multi-country live job intelligence. "
+        "Find hiring managers on LinkedIn with Google X-Ray, generate strictly ≤300-char connection notes, "
+        "and scout live job postings on Indeed and LinkedIn across target countries."
+    )
+
+    radar_subtab_linkedin, radar_subtab_indeed = st.tabs([
+        "👤 LinkedIn Recruiter Discovery & ≤300-Char Note Co-Pilot",
+        "💼 Indeed & Multi-Country Live Job Scout"
+    ])
+
+    # ------------- SUB-TAB 1: LINKEDIN RECRUITER CO-PILOT -------------
+    with radar_subtab_linkedin:
+        st.markdown("### 🎯 Recruiter Target & Connection Note Generator")
+        st.caption("Free LinkedIn connection requests have a strict 300-character limit. Notes generated here are guaranteed <= 300 chars.")
+
+        rc1, rc2 = st.columns([1.8, 2.2])
+
+        # Load partner companies from database for easy 1-click selection
+        all_partner_records = db.get_all_partners(limit=200)
+        company_options = ["(Custom Target Company)"] + [
+            f"{p['company_name']} ({p.get('country', 'Global')})" for p in all_partner_records if p.get("company_name")
+        ]
+
+        with rc1:
+            selected_comp_option = st.selectbox(
+                "Select Company from Pipeline (or enter custom):",
+                company_options,
+                index=0
+            )
+
+            if selected_comp_option == "(Custom Target Company)":
+                target_comp_input = st.text_input("Target Company Name", value="Braintec AG")
+                target_comp_country = st.selectbox("Target Country", [
+                    "India", "Switzerland", "Germany", "United Arab Emirates", 
+                    "Saudi Arabia", "United Kingdom", "United States", "Global"
+                ])
+            else:
+                comp_clean_name = selected_comp_option.split(" (")[0]
+                target_comp_input = comp_clean_name
+                matched_p = next((p for p in all_partner_records if p.get("company_name") == comp_clean_name), None)
+                target_comp_country = matched_p.get("country", "Global") if matched_p else "Global"
+                st.caption(f"Selected Company: **{target_comp_input}** | Region: **{target_comp_country}**")
+
+            recruiter_name_input = st.text_input("Recruiter / Hiring Manager Name (Optional)", placeholder="e.g. Sarah / Alexander / Rahul")
+            target_role_input = st.selectbox(
+                "Target Role Focus:",
+                [
+                    "Odoo Functional Consultant",
+                    "Junior Project Manager",
+                    "ERP Business Analyst",
+                    "Odoo Implementation Specialist",
+                    "Associate Project Manager"
+                ]
+            )
+
+            note_style = st.radio(
+                "Connection Note Style:",
+                [
+                    ("high_impact", "⚡ High-Impact Proof (9-Store Rollout + MCA + Immediate Joining)"),
+                    ("role_focused", "🎯 Role Requisition Focus (BRD/FRD + UAT Sign-off)"),
+                    ("recruiter_inquiry", "🤝 Soft Recruiter Inquiry (ERP Talent Pipeline)")
+                ],
+                format_func=lambda x: x[1]
+            )[0]
+
+            # Recruiter Search Links
+            search_links = linkedin_engine.build_recruiter_search_urls(
+                company_name=target_comp_input,
+                country=target_comp_country,
+                role_focus="Odoo"
+            )
+
+            st.write("")
+            st.markdown("#### 🔎 1-Click Zero-Risk Recruiter Finders")
+            st.markdown(
+                f"""
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px;">
+                    <a href="{search_links['google_xray_url']}" target="_blank" style="background: #2563EB; color: white; padding: 7px 14px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.85rem;">
+                        🌐 Google X-Ray Search
+                    </a>
+                    <a href="{search_links['linkedin_people_url']}" target="_blank" style="background: #0077B5; color: white; padding: 7px 14px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.85rem;">
+                        💼 LinkedIn Recruiter Search
+                    </a>
+                    <a href="{search_links['linkedin_jobs_url']}" target="_blank" style="background: #0F172A; border: 1px solid #38BDF8; color: #38BDF8; padding: 7px 14px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.85rem;">
+                        🏢 {target_comp_input} Jobs
+                    </a>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+        with rc2:
+            generated_note = linkedin_engine.generate_connection_note(
+                company_name=target_comp_input,
+                recruiter_name=recruiter_name_input,
+                target_role=target_role_input,
+                style=note_style
+            )
+
+            char_count = len(generated_note)
+            count_badge_color = "#10B981" if char_count <= 300 else "#EF4444"
+            count_badge_text = f"✅ {char_count} / 300 Characters (Within Free LinkedIn Limit)" if char_count <= 300 else f"⚠️ {char_count} / 300 Characters (Exceeds Limit)"
+
+            st.markdown(
+                f"""
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                    <span style="font-weight: 700; color: #F8FAFC;">Personalized Connection Request Note</span>
+                    <span style="background: rgba(16, 185, 129, 0.15); border: 1px solid {count_badge_color}; color: {count_badge_color}; padding: 3px 10px; border-radius: 12px; font-weight: 700; font-size: 0.82rem;">
+                        {count_badge_text}
+                    </span>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+            edited_note = st.text_area(
+                "Editable Note (Copy & Paste directly into LinkedIn Connect):",
+                value=generated_note,
+                height=140
+            )
+
+            note_len_current = len(edited_note)
+            if note_len_current > 300:
+                st.warning(f"⚠️ Note currently has {note_len_current} characters. Truncate {note_len_current - 300} chars before sending on LinkedIn.")
+            else:
+                st.caption(f"Character count: **{note_len_current} / 300** — 100% LinkedIn compliant.")
+
+            # InMail Pitch Section
+            with st.expander("📬 View Full-Length Recruiter InMail Draft (~150 Words)", expanded=False):
+                inmail_draft = linkedin_engine.generate_inmail_pitch(
+                    company_name=target_comp_input,
+                    recruiter_name=recruiter_name_input,
+                    target_role=target_role_input,
+                    country=target_comp_country
+                )
+                st.markdown(f"**Subject:** `{inmail_draft['subject']}`")
+                st.caption(f"Length: **{inmail_draft['word_count']} words** • Tailored for InMail or follow-up messaging.")
+                st.text_area("InMail Pitch Body:", value=inmail_draft["body"], height=240)
+
+    # ------------- SUB-TAB 2: INDEED & LIVE JOB SCOUT -------------
+    with radar_subtab_indeed:
+        st.markdown("### 💼 Indeed & Multi-Country Live Job Scout")
+        st.caption("Scout fresh ERP and Odoo vacancies across localized Indeed portals, LinkedIn guest feeds, and European partner boards.")
+
+        ind_col1, ind_col2, ind_col3 = st.columns([2.5, 2.5, 2])
+        with ind_col1:
+            indeed_keywords = st.text_input("Search Role / Keywords", value="Odoo Functional Consultant")
+        with ind_col2:
+            indeed_country = st.selectbox(
+                "Target Country Feed:",
+                [
+                    "India",
+                    "United Arab Emirates",
+                    "Saudi Arabia",
+                    "Germany",
+                    "Switzerland",
+                    "United Kingdom",
+                    "United States",
+                    "Canada",
+                    "Australia",
+                    "Global"
+                ],
+                index=0
+            )
+        with ind_col3:
+            indeed_city = st.text_input("City / Region (Optional)", placeholder="e.g. Bangalore / Dubai / Zurich")
+
+        # 1-Click Direct Localized Indeed Search URL
+        indeed_direct_url = indeed_engine.get_indeed_search_url(
+            keywords=indeed_keywords,
+            country=indeed_country,
+            location=indeed_city
+        )
+
+        ind_act1, ind_act2 = st.columns([2.2, 3])
+        with ind_act1:
+            st.markdown(
+                f"""
+                <a href="{indeed_direct_url}" target="_blank" style="display: block; text-align: center; background: #2164F3; color: white; padding: 10px 16px; border-radius: 8px; text-decoration: none; font-weight: 700; margin-top: 10px;">
+                    🌐 Open Live Indeed ({indeed_country})
+                </a>
+                """,
+                unsafe_allow_html=True
+            )
+
+        with ind_act2:
+            st.write("")
+            if st.button("⚡ Scout Live Postings (LinkedIn & Multi-Source)", type="primary", use_container_width=True):
+                with st.spinner(f"Scanning fresh postings for '{indeed_keywords}' in {indeed_country}..."):
+                    found_jobs = indeed_engine.search_live_jobs_multi_source(
+                        keywords=indeed_keywords,
+                        country=indeed_country,
+                        limit=25
+                    )
+                    st.session_state["radar_live_jobs"] = found_jobs
+                    if found_jobs:
+                        st.success(f"Discovered {len(found_jobs)} active job postings!")
+                    else:
+                        st.info("No postings returned by guest feed right now (or cached). You can open the live Indeed portal directly above!")
+
+        # Display scout results
+        if "radar_live_jobs" in st.session_state and st.session_state["radar_live_jobs"]:
+            live_jobs = st.session_state["radar_live_jobs"]
+            st.write("")
+            st.markdown(f"#### 📋 Discovered Openings ({len(live_jobs)})")
+            
+            # Action: 1-Click Queue Selected Company into Outreach Pipeline
+            q_col1, q_col2 = st.columns([3, 2])
+            with q_col1:
+                job_options = [f"{j['company_name']} — {j['job_title']} ({j.get('location', '')})" for j in live_jobs]
+                chosen_job_idx = st.selectbox("Select Job to Queue into Auto-Outreach CRM:", range(len(job_options)), format_func=lambda i: job_options[i])
+            with q_col2:
+                st.write("")
+                if st.button("📥 Queue Company to Outreach (with MX Check)", use_container_width=True):
+                    chosen_job = live_jobs[chosen_job_idx]
+                    q_res = indeed_engine.queue_company_to_outreach(
+                        company_name=chosen_job["company_name"],
+                        website=chosen_job.get("apply_url", ""),
+                        country=indeed_country,
+                        job_title=chosen_job["job_title"]
+                    )
+                    if q_res["success"]:
+                        st.success(q_res["message"])
+                    else:
+                        st.warning(q_res["message"])
+                    time.sleep(1)
+
+            # Table of jobs
+            df_radar = pd.DataFrame(live_jobs)
+            cols_to_show = ["job_title", "company_name", "location", "posted_time", "source", "apply_url"]
+            valid_cols = [c for c in cols_to_show if c in df_radar.columns]
+            st.dataframe(df_radar[valid_cols], use_container_width=True, height=320)
+
+# ================= TAB 3: LEAD PIPELINE CRM =================
 with tab_pipeline:
     st.subheader("🏢 MX-Verified Partner Pipeline & Leads CRM")
     st.caption("Manage verified corporate consultancies and prospective employers across target countries.")
