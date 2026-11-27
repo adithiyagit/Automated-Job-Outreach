@@ -50,6 +50,10 @@ COUNTRY_TIMEZONE_MAP = {
     "singapore": "Asia/Singapore",
     "australia": "Australia/Sydney",
     "india": "Asia/Kolkata",
+    "kerala": "Asia/Kolkata",
+    "kochi": "Asia/Kolkata",
+    "trivandrum": "Asia/Kolkata",
+    "calicut": "Asia/Kolkata",
     "malaysia": "Asia/Kuala_Lumpur",
 
     # Default fallback

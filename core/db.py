@@ -367,7 +367,9 @@ def get_uncontacted_partners_with_emails(
     params = []
     if country_filter and country_filter.lower() not in ("all", "global"):
         clean_cf = country_filter.lower().strip()
-        if clean_cf in ("middle_east", "gulf"):
+        if clean_cf in ("kerala", "kochi", "trivandrum", "calicut"):
+            query += " AND (p.country LIKE '%India%' AND (p.city LIKE '%Kochi%' OR p.city LIKE '%Kerala%' OR p.city LIKE '%Trivandrum%' OR p.city LIKE '%Calicut%' OR p.city LIKE '%Ernakulam%' OR p.partner_tier LIKE '%Kerala%')) "
+        elif clean_cf in ("middle_east", "gulf"):
             query += " AND (p.country LIKE '%Emirates%' OR p.country LIKE '%Saudi%' OR p.country LIKE '%Qatar%' OR p.country LIKE '%Oman%' OR p.country LIKE '%Kuwait%' OR p.country LIKE '%Bahrain%') "
         elif clean_cf in ("europe", "dach", "western_europe"):
             query += " AND (p.country LIKE '%Switzerland%' OR p.country LIKE '%Germany%' OR p.country LIKE '%Belgium%' OR p.country LIKE '%Netherlands%' OR p.country LIKE '%France%' OR p.country LIKE '%United Kingdom%' OR p.country LIKE '%Spain%' OR p.country LIKE '%Italy%' OR p.country LIKE '%Austria%') "
