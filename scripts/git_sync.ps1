@@ -1,4 +1,4 @@
-﻿# 1-Click Git Auto-Sync PowerShell Utility
+# 1-Click Git Auto-Sync PowerShell Utility
 Param(
     [string]$Message = ""
 )
