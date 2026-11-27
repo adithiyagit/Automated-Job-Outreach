@@ -421,6 +421,244 @@ with btn_c5:
 
 st.write("")
 
+# ----------------- REGIONAL TECH HUB DIRECT ACTION BUTTONS & DEDICATED DROPDOWNS -----------------
+st.markdown("### ⚡ Regional Fast-Track Outreach Hubs")
+st.caption("Dedicated direct controls and 1-click apply buttons for Bangalore, Hyderabad, and Kerala tech hubs.")
+
+col_q1, col_q2, col_q3, col_q4, col_q5 = st.columns([2, 2, 2, 2, 3])
+with col_q1:
+    if st.button("🏙️ Focus Bangalore", use_container_width=True, help="Switch autonomous engine target to Bangalore Tech Hub"):
+        daemon._target_region = "bangalore"
+        daemon._save_state()
+        st.success("Target region set to BANGALORE")
+        time.sleep(0.5)
+        st.rerun()
+with col_q2:
+    if st.button("💎 Focus Hyderabad", use_container_width=True, help="Switch autonomous engine target to Hyderabad HITEC City"):
+        daemon._target_region = "hyderabad"
+        daemon._save_state()
+        st.success("Target region set to HYDERABAD")
+        time.sleep(0.5)
+        st.rerun()
+with col_q3:
+    if st.button("🌴 Focus Kerala", use_container_width=True, help="Switch autonomous engine target to Kerala Tech Hubs"):
+        daemon._target_region = "kerala"
+        daemon._save_state()
+        st.success("Target region set to KERALA")
+        time.sleep(0.5)
+        st.rerun()
+with col_q4:
+    if st.button("🌐 Focus Global", use_container_width=True, help="Switch autonomous engine target to Global Round-Robin"):
+        daemon._target_region = "all"
+        daemon._save_state()
+        st.success("Target region set to GLOBAL")
+        time.sleep(0.5)
+        st.rerun()
+with col_q5:
+    cur_reg_name = daemon._target_region.upper()
+    st.markdown(f"""
+    <div style="background: #1E293B; border: 1px solid #38BDF8; border-radius: 8px; padding: 7px 12px; text-align: center;">
+        <span style="font-size: 0.8rem; color: #94A3B8;">ACTIVE OUTREACH FOCUS:</span> 
+        <strong style="color: #38BDF8; font-size: 0.95rem;">🎯 {cur_reg_name}</strong>
+    </div>
+    """, unsafe_allow_html=True)
+
+st.write("")
+
+# Dedicated 3-Column Hub Cards with Separate Dropdowns & Apply Buttons
+hub_c1, hub_c2, hub_c3 = st.columns(3)
+
+with hub_c1:
+    st.markdown("""
+    <div style="background: #131C31; border: 1px solid #38BDF8; border-radius: 10px; padding: 12px 14px; margin-bottom: 8px;">
+        <div style="font-size: 1.05rem; font-weight: 700; color: #38BDF8;">🏙️ Bangalore Tech Hub</div>
+        <div style="font-size: 0.8rem; color: #94A3B8;">Electronic City • Whitefield • Manyata • 0-Day Relocation</div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    blr_leads = db.get_all_partners_filtered(country="bangalore", limit=100)
+    blr_choices = [
+        f"{p['company_name']} ({p.get('contact_email') or 'No email'}) — [{p.get('status', 'uncontacted').upper()}]"
+        for p in blr_leads
+    ]
+    
+    selected_blr_str = st.selectbox(
+        "🏙️ Bangalore Companies Dropdown:",
+        options=blr_choices if blr_choices else ["No Bangalore leads"],
+        key="dropdown_bangalore_companies",
+        help="Separate dropdown of all verified Bangalore corporate consultancies."
+    )
+    
+    b_btn1, b_btn2 = st.columns(2)
+    with b_btn1:
+        if st.button("🚀 Apply Selected", key="btn_blr_single", use_container_width=True, type="primary"):
+            if blr_choices and "(" in selected_blr_str:
+                comp_name = selected_blr_str.split(" (")[0]
+                lead_obj = next((p for p in blr_leads if p["company_name"] == comp_name), None)
+                if lead_obj and lead_obj.get("contact_email"):
+                    email = lead_obj["contact_email"]
+                    is_deliv, rsn = email_verifier.verify_email_deliverability(email)
+                    if not is_deliv:
+                        st.error(f"Cannot dispatch: {rsn}")
+                    else:
+                        with st.spinner(f"Sending tailored Bangalore pitch to {comp_name}..."):
+                            draft = ai_drafter.generate_application_draft(
+                                company_name=comp_name,
+                                country="bangalore",
+                                job_title="Junior Project Manager / ERP Functional Consultant"
+                            )
+                            succ, msg, app_id = mailer.dispatch_single_email(
+                                recipient_email=email,
+                                subject=draft["subject"],
+                                body=draft["body"],
+                                partner_id=lead_obj["id"],
+                                company_name=comp_name,
+                                country="India",
+                                job_title="Junior Project Manager / ERP Functional Consultant"
+                            )
+                            if succ:
+                                st.success(f"✅ Delivered application to {comp_name} ({email})!")
+                                time.sleep(1)
+                                st.rerun()
+                            else:
+                                st.error(f"Failed to deliver: {msg}")
+    with b_btn2:
+        if st.button("⚡ Apply All BLR", key="btn_blr_all", use_container_width=True, help="Switch focus to Bangalore and run batch cycle"):
+            daemon._target_region = "bangalore"
+            daemon._save_state()
+            threading.Thread(target=daemon._execute_cycle, daemon=True).start()
+            st.info("Initiated Bangalore autonomous outreach! Follow progress in Live Terminal.")
+            time.sleep(1)
+            st.rerun()
+
+with hub_c2:
+    st.markdown("""
+    <div style="background: #131C31; border: 1px solid #C084FC; border-radius: 10px; padding: 12px 14px; margin-bottom: 8px;">
+        <div style="font-size: 1.05rem; font-weight: 700; color: #C084FC;">💎 Hyderabad Tech Hub</div>
+        <div style="font-size: 0.8rem; color: #94A3B8;">HITEC City • Madhapur • Gachibowli • 0-Day Relocation</div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    hyd_leads = db.get_all_partners_filtered(country="hyderabad", limit=100)
+    hyd_choices = [
+        f"{p['company_name']} ({p.get('contact_email') or 'No email'}) — [{p.get('status', 'uncontacted').upper()}]"
+        for p in hyd_leads
+    ]
+    
+    selected_hyd_str = st.selectbox(
+        "💎 Hyderabad Companies Dropdown:",
+        options=hyd_choices if hyd_choices else ["No Hyderabad leads"],
+        key="dropdown_hyderabad_companies",
+        help="Separate dropdown of all verified Hyderabad corporate consultancies."
+    )
+    
+    h_btn1, h_btn2 = st.columns(2)
+    with h_btn1:
+        if st.button("🚀 Apply Selected", key="btn_hyd_single", use_container_width=True, type="primary"):
+            if hyd_choices and "(" in selected_hyd_str:
+                comp_name = selected_hyd_str.split(" (")[0]
+                lead_obj = next((p for p in hyd_leads if p["company_name"] == comp_name), None)
+                if lead_obj and lead_obj.get("contact_email"):
+                    email = lead_obj["contact_email"]
+                    is_deliv, rsn = email_verifier.verify_email_deliverability(email)
+                    if not is_deliv:
+                        st.error(f"Cannot dispatch: {rsn}")
+                    else:
+                        with st.spinner(f"Sending tailored Hyderabad pitch to {comp_name}..."):
+                            draft = ai_drafter.generate_application_draft(
+                                company_name=comp_name,
+                                country="hyderabad",
+                                job_title="Junior Project Manager / ERP Functional Consultant"
+                            )
+                            succ, msg, app_id = mailer.dispatch_single_email(
+                                recipient_email=email,
+                                subject=draft["subject"],
+                                body=draft["body"],
+                                partner_id=lead_obj["id"],
+                                company_name=comp_name,
+                                country="India",
+                                job_title="Junior Project Manager / ERP Functional Consultant"
+                            )
+                            if succ:
+                                st.success(f"✅ Delivered application to {comp_name} ({email})!")
+                                time.sleep(1)
+                                st.rerun()
+                            else:
+                                st.error(f"Failed to deliver: {msg}")
+    with h_btn2:
+        if st.button("⚡ Apply All HYD", key="btn_hyd_all", use_container_width=True, help="Switch focus to Hyderabad and run batch cycle"):
+            daemon._target_region = "hyderabad"
+            daemon._save_state()
+            threading.Thread(target=daemon._execute_cycle, daemon=True).start()
+            st.info("Initiated Hyderabad autonomous outreach! Follow progress in Live Terminal.")
+            time.sleep(1)
+            st.rerun()
+
+with hub_c3:
+    st.markdown("""
+    <div style="background: #131C31; border: 1px solid #34D399; border-radius: 10px; padding: 12px 14px; margin-bottom: 8px;">
+        <div style="font-size: 1.05rem; font-weight: 700; color: #34D399;">🌴 Kerala Fast-Track</div>
+        <div style="font-size: 0.8rem; color: #94A3B8;">Kochi Infopark • Trivandrum Technopark • 0-Day Local</div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    ker_leads = db.get_all_partners_filtered(country="kerala", limit=100)
+    ker_choices = [
+        f"{p['company_name']} ({p.get('contact_email') or 'No email'}) — [{p.get('status', 'uncontacted').upper()}]"
+        for p in ker_leads
+    ]
+    
+    selected_ker_str = st.selectbox(
+        "🌴 Kerala Companies Dropdown:",
+        options=ker_choices if ker_choices else ["No Kerala leads"],
+        key="dropdown_kerala_companies",
+        help="Separate dropdown of all verified Kerala tech companies."
+    )
+    
+    k_btn1, k_btn2 = st.columns(2)
+    with k_btn1:
+        if st.button("🚀 Apply Selected", key="btn_ker_single", use_container_width=True, type="primary"):
+            if ker_choices and "(" in selected_ker_str:
+                comp_name = selected_ker_str.split(" (")[0]
+                lead_obj = next((p for p in ker_leads if p["company_name"] == comp_name), None)
+                if lead_obj and lead_obj.get("contact_email"):
+                    email = lead_obj["contact_email"]
+                    is_deliv, rsn = email_verifier.verify_email_deliverability(email)
+                    if not is_deliv:
+                        st.error(f"Cannot dispatch: {rsn}")
+                    else:
+                        with st.spinner(f"Sending tailored Kerala pitch to {comp_name}..."):
+                            draft = ai_drafter.generate_application_draft(
+                                company_name=comp_name,
+                                country="kerala",
+                                job_title="Junior Project Manager / ERP Functional Consultant"
+                            )
+                            succ, msg, app_id = mailer.dispatch_single_email(
+                                recipient_email=email,
+                                subject=draft["subject"],
+                                body=draft["body"],
+                                partner_id=lead_obj["id"],
+                                company_name=comp_name,
+                                country="India",
+                                job_title="Junior Project Manager / ERP Functional Consultant"
+                            )
+                            if succ:
+                                st.success(f"✅ Delivered application to {comp_name} ({email})!")
+                                time.sleep(1)
+                                st.rerun()
+                            else:
+                                st.error(f"Failed to deliver: {msg}")
+    with k_btn2:
+        if st.button("⚡ Apply All KER", key="btn_ker_all", use_container_width=True, help="Switch focus to Kerala and run batch cycle"):
+            daemon._target_region = "kerala"
+            daemon._save_state()
+            threading.Thread(target=daemon._execute_cycle, daemon=True).start()
+            st.info("Initiated Kerala autonomous outreach! Follow progress in Live Terminal.")
+            time.sleep(1)
+            st.rerun()
+
+st.divider()
+
 # ----------------- TELEMETRY METRICS & PROGRESS -----------------
 kpi1, kpi2, kpi3, kpi4, kpi5 = st.columns(5)
 
