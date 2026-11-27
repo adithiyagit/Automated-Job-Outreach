@@ -1097,13 +1097,35 @@ with tab_pipeline:
     st.subheader("🏢 MX-Verified Partner Pipeline & Leads CRM")
     st.caption("Manage verified corporate consultancies and prospective employers across target countries.")
 
+    st.markdown("##### ⚡ Quick City Filter Buttons:")
+    qf1, qf2, qf3, qf4, _ = st.columns([2, 2, 2, 2, 3])
+    with qf1:
+        if st.button("🏙️ Bangalore Leads", key="btn_qf_blr", use_container_width=True):
+            st.session_state["lead_country_choice_idx"] = 2
+            st.rerun()
+    with qf2:
+        if st.button("💎 Hyderabad Leads", key="btn_qf_hyd", use_container_width=True):
+            st.session_state["lead_country_choice_idx"] = 3
+            st.rerun()
+    with qf3:
+        if st.button("🌴 Kerala Leads", key="btn_qf_ker", use_container_width=True):
+            st.session_state["lead_country_choice_idx"] = 1
+            st.rerun()
+    with qf4:
+        if st.button("🌐 All Leads", key="btn_qf_all", use_container_width=True):
+            st.session_state["lead_country_choice_idx"] = 0
+            st.rerun()
+
     crm_c1, crm_c2, crm_c3, crm_c4 = st.columns([2, 1.8, 1.8, 1.5])
     with crm_c1:
         lead_search = st.text_input("🔍 Search Leads", placeholder="Search by company, email, or domain...")
     with crm_c2:
+        country_list = ["All Countries", "Kerala (Kochi/Trivandrum/Calicut)", "Bangalore (Bengaluru)", "Hyderabad (HITEC City)", "India", "United Arab Emirates", "Saudi Arabia", "Switzerland", "Germany", "Belgium", "Netherlands", "United Kingdom", "United States", "Singapore", "Australia"]
+        default_idx = st.session_state.get("lead_country_choice_idx", 0)
         lead_country_choice = st.selectbox(
             "Filter Country",
-            ["All Countries", "Kerala (Kochi/Trivandrum/Calicut)", "Bangalore (Bengaluru)", "Hyderabad (HITEC City)", "India", "United Arab Emirates", "Saudi Arabia", "Switzerland", "Germany", "Belgium", "Netherlands", "United Kingdom", "United States", "Singapore", "Australia"]
+            country_list,
+            index=default_idx
         )
     with crm_c3:
         lead_status_choice = st.selectbox(
