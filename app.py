@@ -336,6 +336,8 @@ with btn_c1:
     region_options = [
         ("all", "🌐 Global Round-Robin (All Countries Interleaved)"),
         ("kerala", "🌴 Kerala Fast-Track (Kochi / Trivandrum / Calicut - 0-Day Local Joining)"),
+        ("bangalore", "🏙️ Bangalore Fast-Track (Immediate Relocation / Tech Hub)"),
+        ("hyderabad", "💎 Hyderabad Fast-Track (HITEC City / Immediate Relocation)"),
         ("india", "🇮🇳 India Fast-Track (Immediate 0-Day Hiring)"),
         ("switzerland", "🇨🇭 Switzerland (DACH Odoo Practice)"),
         ("germany", "🇩🇪 Germany (Central Europe Odoo Practice)"),
@@ -649,7 +651,7 @@ with tab_radar:
             if selected_comp_option == "(Custom Target Company)":
                 target_comp_input = st.text_input("Target Company Name", value="Braintec AG")
                 target_comp_country = st.selectbox("Target Country", [
-                    "Kerala", "India", "Switzerland", "Germany", "United Arab Emirates", 
+                    "Kerala", "Bangalore", "Hyderabad", "India", "Switzerland", "Germany", "United Arab Emirates", 
                     "Saudi Arabia", "United Kingdom", "United States", "Global"
                 ])
             else:
@@ -768,6 +770,8 @@ with tab_radar:
                 "Target Country Feed:",
                 [
                     "Kerala",
+                    "Bangalore",
+                    "Hyderabad",
                     "India",
                     "United Arab Emirates",
                     "Saudi Arabia",
@@ -861,7 +865,7 @@ with tab_pipeline:
     with crm_c2:
         lead_country_choice = st.selectbox(
             "Filter Country",
-            ["All Countries", "Kerala (Kochi/Trivandrum/Calicut)", "India", "United Arab Emirates", "Saudi Arabia", "Switzerland", "Germany", "Belgium", "Netherlands", "United Kingdom", "United States", "Singapore", "Australia"]
+            ["All Countries", "Kerala (Kochi/Trivandrum/Calicut)", "Bangalore (Bengaluru)", "Hyderabad (HITEC City)", "India", "United Arab Emirates", "Saudi Arabia", "Switzerland", "Germany", "Belgium", "Netherlands", "United Kingdom", "United States", "Singapore", "Australia"]
         )
     with crm_c3:
         lead_status_choice = st.selectbox(
@@ -1053,6 +1057,8 @@ with tab_studio:
             "Select Destination Country Archetype:",
             [
                 "Kerala (Local Tech Hubs - Kochi / Trivandrum / Calicut, 0-Day Notice, MCA)",
+                "Bangalore (Tech Hub - Electronic City / Whitefield / Manyata, Immediate Relocation)",
+                "Hyderabad (HITEC City / Madhapur / Gachibowli, Immediate Relocation)",
                 "India (Domestic Consultancies - 0-Day Notice, MCA, Kerala/Bangalore)",
                 "Switzerland (DACH Europe - Camptocamp/Braintec, SOP rigor, FRD/BRD)",
                 "United Arab Emirates (Middle East - GCC Multi-Store Rollouts, Immediate Relocation)",
@@ -1063,6 +1069,10 @@ with tab_studio:
         )
         if "Kerala" in country_choice:
             sample_default_comp = "ZestyBeanz Technologies"
+        elif "Bangalore" in country_choice:
+            sample_default_comp = "Trigent Software Bangalore"
+        elif "Hyderabad" in country_choice:
+            sample_default_comp = "Ray Business Technologies"
         elif "India" in country_choice:
             sample_default_comp = "Softhealer Technologies"
         elif "Switzerland" in country_choice:
