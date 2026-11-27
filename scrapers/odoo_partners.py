@@ -1348,7 +1348,7 @@ def clean_database_deliverability() -> Dict[str, int]:
 def replenish_leads_if_low(min_threshold: int = 15) -> Dict[str, Any]:
     """
     Checks the uncontacted partner count. If below min_threshold,
-    automatically seeds verified global partners and runs live discovery
+    automatically seeds verified global partners and runs multi-source discovery
     so that the autonomous outreach queue NEVER runs dry.
     """
     summary = db.get_stats_summary()
@@ -1360,7 +1360,17 @@ def replenish_leads_if_low(min_threshold: int = 15) -> Dict[str, Any]:
         stats["verified_added"] = seed_stats.get("added", 0)
         stats["added"] += seed_stats.get("added", 0)
 
-        # If still low, crawl live directory for key regions
+        # If still low, crawl live job aggregators (RemoteOK, Remotive, Jobicy)
+        cur_summary = db.get_stats_summary()
+        if cur_summary.get("uncontacted_count", 0) < min_threshold:
+            try:
+                from scrapers import job_boards
+                jb_stats = job_boards.sync_all_fresh_jobs(max_enrich=6)
+                stats["added"] += jb_stats.get("added_to_queue", 0)
+            except Exception as e:
+                print(f"Notice during job board replenishment: {e}")
+
+        # If still low, crawl live directory for key regions with tight timeouts
         cur_summary = db.get_stats_summary()
         if cur_summary.get("uncontacted_count", 0) < min_threshold:
             for country in ["India", "Switzerland", "Germany", "United Arab Emirates", "Saudi Arabia", "United Kingdom"]:
