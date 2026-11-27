@@ -720,6 +720,514 @@ VERIFIED_GLOBAL_ODOO_PARTNERS = [
         "city": "Gurgaon / Hyderabad",
         "tier": "Gold",
         "contact_email": "careers@kellton.com"
+    },
+
+    # --- INDIA EXPANDED (Kerala Fast-Track & Regional Hubs) ---
+    {
+        "name": "Bassam Infotech",
+        "website": "https://www.bassaminfotech.com",
+        "country": "India",
+        "city": "Calicut / Kochi, Kerala",
+        "tier": "Gold Partner",
+        "contact_email": "info@bassaminfotech.com"
+    },
+    {
+        "name": "BroadTech Innovations",
+        "website": "https://www.broadtech-innovations.com",
+        "country": "India",
+        "city": "Kochi, Kerala",
+        "tier": "Silver Partner",
+        "contact_email": "info@broadtech-innovations.com"
+    },
+    {
+        "name": "Cybrosys Technologies",
+        "website": "https://www.cybrosys.com",
+        "country": "India",
+        "city": "Calicut / Kochi, Kerala",
+        "tier": "Gold Partner",
+        "contact_email": "info@cybrosys.com"
+    },
+    {
+        "name": "Confianz Global India",
+        "website": "https://www.confianzit.com",
+        "country": "India",
+        "city": "Trivandrum / Kochi",
+        "tier": "Gold Partner",
+        "contact_email": "info@confianzit.com"
+    },
+    {
+        "name": "Techvantage Systems",
+        "website": "https://www.techvantagesystems.com",
+        "country": "India",
+        "city": "Trivandrum / Kochi",
+        "tier": "Ready Partner",
+        "contact_email": "info@techvantagesystems.com"
+    },
+    {
+        "name": "Pragmatic Techsoft",
+        "website": "https://www.pragtech.co.in",
+        "country": "India",
+        "city": "Pune",
+        "tier": "Gold Partner",
+        "contact_email": "sales@pragtech.co.in"
+    },
+    {
+        "name": "Serpent Consulting Services",
+        "website": "https://www.serpentcs.com",
+        "country": "India",
+        "city": "Ahmedabad",
+        "tier": "Gold Partner",
+        "contact_email": "contact@serpentcs.com"
+    },
+    {
+        "name": "Bista Solutions India",
+        "website": "https://www.bistasolutions.com",
+        "country": "India",
+        "city": "Mumbai / Bangalore",
+        "tier": "Gold Partner",
+        "contact_email": "sales@bistasolutions.com"
+    },
+    {
+        "name": "CandidRoot Solutions",
+        "website": "https://www.candidroot.com",
+        "country": "India",
+        "city": "Ahmedabad",
+        "tier": "Silver Partner",
+        "contact_email": "info@candidroot.com"
+    },
+    {
+        "name": "Emipro Technologies",
+        "website": "https://www.emiprotechnologies.com",
+        "country": "India",
+        "city": "Rajkot / Ahmedabad",
+        "tier": "Gold Partner",
+        "contact_email": "info@emiprotechnologies.com"
+    },
+    {
+        "name": "Zehntech Technologies",
+        "website": "https://www.zehntech.com",
+        "country": "India",
+        "city": "Indore",
+        "tier": "Silver Partner",
+        "contact_email": "info@zehntech.com"
+    },
+    {
+        "name": "Ksolves India Ltd",
+        "website": "https://www.ksolves.com",
+        "country": "India",
+        "city": "Noida / Pune",
+        "tier": "Gold Partner",
+        "contact_email": "sales@ksolves.com"
+    },
+    {
+        "name": "Webkul Software",
+        "website": "https://www.webkul.com",
+        "country": "India",
+        "city": "Noida",
+        "tier": "Gold Partner",
+        "contact_email": "sales@webkul.com"
+    },
+    {
+        "name": "Aktiv Software",
+        "website": "https://www.aktivsoftware.com",
+        "country": "India",
+        "city": "Ahmedabad",
+        "tier": "Gold Partner",
+        "contact_email": "info@aktivsoftware.com"
+    },
+    {
+        "name": "TechUltra Solutions",
+        "website": "https://www.techultrasolutions.com",
+        "country": "India",
+        "city": "Ahmedabad",
+        "tier": "Silver Partner",
+        "contact_email": "contact@techultrasolutions.com"
+    },
+    {
+        "name": "Synconics Technologies",
+        "website": "https://www.synconics.com",
+        "country": "India",
+        "city": "Ahmedabad",
+        "tier": "Gold Partner",
+        "contact_email": "contact@synconics.com"
+    },
+    {
+        "name": "DevIntelle Consulting",
+        "website": "https://www.devintellecs.com",
+        "country": "India",
+        "city": "Surat",
+        "tier": "Silver Partner",
+        "contact_email": "info@devintellecs.com"
+    },
+    {
+        "name": "Planet Odoo",
+        "website": "https://www.planet-odoo.com",
+        "country": "India",
+        "city": "Ahmedabad",
+        "tier": "Silver Partner",
+        "contact_email": "info@planet-odoo.com"
+    },
+    {
+        "name": "Silent Infotech",
+        "website": "https://www.silentinfotech.com",
+        "country": "India",
+        "city": "Surat / Ahmedabad",
+        "tier": "Gold Partner",
+        "contact_email": "info@silentinfotech.com"
+    },
+    {
+        "name": "Ascetic Business Solution",
+        "website": "https://www.asceticbs.com",
+        "country": "India",
+        "city": "Ahmedabad",
+        "tier": "Silver Partner",
+        "contact_email": "info@asceticbs.com"
+    },
+    {
+        "name": "Uncanny Consulting Services",
+        "website": "https://www.uncannycs.com",
+        "country": "India",
+        "city": "Ahmedabad",
+        "tier": "Silver Partner",
+        "contact_email": "info@uncannycs.com"
+    },
+    {
+        "name": "Banibro IT Solutions",
+        "website": "https://www.banibro.com",
+        "country": "India",
+        "city": "Chennai",
+        "tier": "Gold Partner",
+        "contact_email": "info@banibro.com"
+    },
+    {
+        "name": "O2b Technologies",
+        "website": "https://www.o2btechnologies.com",
+        "country": "India",
+        "city": "Noida",
+        "tier": "Gold Partner",
+        "contact_email": "info@o2btechnologies.com"
+    },
+    {
+        "name": "Bytes Technolab",
+        "website": "https://www.bytestechnolab.com",
+        "country": "India",
+        "city": "Ahmedabad",
+        "tier": "Gold Partner",
+        "contact_email": "info@bytestechnolab.com"
+    },
+    {
+        "name": "Apagen Solutions",
+        "website": "https://www.apagen.com",
+        "country": "India",
+        "city": "Delhi-NCR",
+        "tier": "Gold Partner",
+        "contact_email": "info@apagen.com"
+    },
+    {
+        "name": "Geminate Consultancy",
+        "website": "https://www.geminatecs.com",
+        "country": "India",
+        "city": "Surat",
+        "tier": "Silver Partner",
+        "contact_email": "info@geminatecs.com"
+    },
+    {
+        "name": "Techneith Technologies",
+        "website": "https://www.techneith.com",
+        "country": "India",
+        "city": "Ahmedabad",
+        "tier": "Ready Partner",
+        "contact_email": "info@techneith.com"
+    },
+    {
+        "name": "Dexciss Technology",
+        "website": "https://www.dexciss.com",
+        "country": "India",
+        "city": "Pune",
+        "tier": "Gold Partner",
+        "contact_email": "info@dexciss.com"
+    },
+    {
+        "name": "Techloyce India",
+        "website": "https://www.techloyce.com",
+        "country": "India",
+        "city": "Bangalore",
+        "tier": "Gold Partner",
+        "contact_email": "info@techloyce.com"
+    },
+    {
+        "name": "Target Integration India",
+        "website": "https://www.targetintegration.com",
+        "country": "India",
+        "city": "Gurgaon",
+        "tier": "Gold Partner",
+        "contact_email": "info@targetintegration.com"
+    },
+    {
+        "name": "Brainvire Infotech India",
+        "website": "https://www.brainvire.com",
+        "country": "India",
+        "city": "Mumbai / Ahmedabad",
+        "tier": "Gold Partner",
+        "contact_email": "info@brainvire.com"
+    },
+
+    # --- UNITED ARAB EMIRATES & MIDDLE EAST EXPANDED ---
+    {
+        "name": "Azkatech Middle East",
+        "website": "https://www.azkatech.com",
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "tier": "Gold Partner",
+        "contact_email": "contact@azkatech.com"
+    },
+    {
+        "name": "Ever Technologies Dubai",
+        "website": "https://www.ever-technologies.com",
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "tier": "Silver Partner",
+        "contact_email": "info@ever-technologies.com"
+    },
+    {
+        "name": "SmartWay IT Dubai",
+        "website": "https://www.smartway-me.com",
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "tier": "Silver Partner",
+        "contact_email": "info@smartway-me.com"
+    },
+    {
+        "name": "Silicon Spectra UAE",
+        "website": "https://www.siliconspectra.com",
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "tier": "Silver Partner",
+        "contact_email": "info@siliconspectra.com"
+    },
+    {
+        "name": "CNS Middle East",
+        "website": "https://www.cns-me.com",
+        "country": "United Arab Emirates",
+        "city": "Abu Dhabi / Dubai",
+        "tier": "Gold Partner",
+        "contact_email": "info@cns-me.com"
+    },
+    {
+        "name": "Tech Vista Systems Dubai",
+        "website": "https://www.techvistasystems.com",
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "tier": "Gold Partner",
+        "contact_email": "info@techvistasystems.com"
+    },
+    {
+        "name": "Alpha Data UAE",
+        "website": "https://www.alpha.ae",
+        "country": "United Arab Emirates",
+        "city": "Abu Dhabi / Dubai",
+        "tier": "Gold Partner",
+        "contact_email": "info@alpha.ae"
+    },
+    {
+        "name": "Intertec Systems UAE",
+        "website": "https://www.intertecsystems.com",
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "tier": "Gold Partner",
+        "contact_email": "info@intertecsystems.com"
+    },
+    {
+        "name": "Al-Futtaim Technologies",
+        "website": "https://www.alfuttaim.com",
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "tier": "Gold Partner",
+        "contact_email": "contact@alfuttaim.com"
+    },
+    {
+        "name": "Pinnacle Technologies UAE",
+        "website": "https://www.pinnacle.ae",
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "tier": "Gold Partner",
+        "contact_email": "info@pinnacle.ae"
+    },
+    {
+        "name": "Data Capture Systems Dubai",
+        "website": "https://www.dcsme.com",
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "tier": "Gold Partner",
+        "contact_email": "info@dcsme.com"
+    },
+    {
+        "name": "Smart Vision ME",
+        "website": "https://www.smartvision.ae",
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "tier": "Silver Partner",
+        "contact_email": "info@smartvision.ae"
+    },
+    {
+        "name": "Global Triangles Dubai",
+        "website": "https://www.globaltriangles.com",
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "tier": "Gold Partner",
+        "contact_email": "info@globaltriangles.com"
+    },
+    {
+        "name": "Mindmill Technologies UAE",
+        "website": "https://www.mindmill.com",
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "tier": "Gold Partner",
+        "contact_email": "info@mindmill.com"
+    },
+
+    # --- SAUDI ARABIA (KSA) EXPANDED ---
+    {
+        "name": "Buraq Systems KSA",
+        "website": "https://www.buraq.sa",
+        "country": "Saudi Arabia",
+        "city": "Riyadh",
+        "tier": "Gold Partner",
+        "contact_email": "info@buraq.sa"
+    },
+    {
+        "name": "Al-Jammaz Technologies KSA",
+        "website": "https://www.al-jammaz.com",
+        "country": "Saudi Arabia",
+        "city": "Riyadh",
+        "tier": "Gold Partner",
+        "contact_email": "info@al-jammaz.com"
+    },
+
+    # --- GERMANY & EUROPE EXPANDED ---
+    {
+        "name": "initOS GmbH",
+        "website": "https://www.initos.com",
+        "country": "Germany",
+        "city": "Magdeburg",
+        "tier": "Gold Partner",
+        "contact_email": "info@initos.com"
+    },
+    {
+        "name": "equipago GmbH",
+        "website": "https://www.equipago.com",
+        "country": "Germany",
+        "city": "Munich",
+        "tier": "Silver Partner",
+        "contact_email": "info@equipago.com"
+    },
+    {
+        "name": "mana-tec GmbH",
+        "website": "https://www.mana-tec.com",
+        "country": "Germany",
+        "city": "Dresden",
+        "tier": "Gold Partner",
+        "contact_email": "info@mana-tec.com"
+    },
+    {
+        "name": "Open-DSI Germany",
+        "website": "https://www.open-dsi.fr",
+        "country": "Germany",
+        "city": "Frankfurt",
+        "tier": "Silver Partner",
+        "contact_email": "contact@open-dsi.fr"
+    },
+    {
+        "name": "Data Warehouse GmbH",
+        "website": "https://www.data-warehouse.de",
+        "country": "Germany",
+        "city": "Berlin",
+        "tier": "Silver Partner",
+        "contact_email": "info@data-warehouse.de"
+    },
+    {
+        "name": "OBS Solutions GmbH",
+        "website": "https://www.obs-solutions.de",
+        "country": "Germany",
+        "city": "Siegen",
+        "tier": "Gold Partner",
+        "contact_email": "info@obs-solutions.de"
+    },
+
+    # --- UNITED KINGDOM EXPANDED ---
+    {
+        "name": "Smart IT UK",
+        "website": "https://www.smart-it.com",
+        "country": "United Kingdom",
+        "city": "Gateshead / London",
+        "tier": "Gold Partner",
+        "contact_email": "info@smart-it.com"
+    },
+    {
+        "name": "Silverfinch UK",
+        "website": "https://www.silverfinch.co.uk",
+        "country": "United Kingdom",
+        "city": "London",
+        "tier": "Silver Partner",
+        "contact_email": "info@silverfinch.co.uk"
+    },
+    {
+        "name": "Target Integration UK",
+        "website": "https://www.targetintegration.com",
+        "country": "United Kingdom",
+        "city": "Birmingham",
+        "tier": "Gold Partner",
+        "contact_email": "uk@targetintegration.com"
+    },
+
+    # --- UNITED STATES & GLOBAL EXPANDED ---
+    {
+        "name": "Open Source Integrators US",
+        "website": "https://www.opensourceintegrators.com",
+        "country": "United States",
+        "city": "Denver / New York",
+        "tier": "Gold Partner",
+        "contact_email": "info@opensourceintegrators.com"
+    },
+    {
+        "name": "Novobi LLC",
+        "website": "https://www.novobi.com",
+        "country": "United States",
+        "city": "Austin, Texas",
+        "tier": "Gold Partner",
+        "contact_email": "info@novobi.com"
+    },
+    {
+        "name": "Sodexis Inc",
+        "website": "https://www.sodexis.com",
+        "country": "United States",
+        "city": "Orlando, Florida",
+        "tier": "Gold Partner",
+        "contact_email": "info@sodexis.com"
+    },
+    {
+        "name": "OSI Digital US",
+        "website": "https://www.osidigital.com",
+        "country": "United States",
+        "city": "Los Angeles",
+        "tier": "Gold Partner",
+        "contact_email": "info@osidigital.com"
+    },
+    {
+        "name": "Port Cities Singapore",
+        "website": "https://www.portcities.net",
+        "country": "Singapore",
+        "city": "Singapore",
+        "tier": "Gold Partner",
+        "contact_email": "singapore@portcities.net"
+    },
+    {
+        "name": "Willow IT Australia",
+        "website": "https://www.willowit.com.au",
+        "country": "Australia",
+        "city": "Melbourne",
+        "tier": "Gold Partner",
+        "contact_email": "info@willowit.com.au"
     }
 ]
 
@@ -740,7 +1248,7 @@ def crawl_live_odoo_partners(country_name: str, max_pages: int = 2) -> List[Dict
             params["page"] = page
 
         try:
-            resp = requests.get(url, params=params, headers=HEADERS, timeout=12)
+            resp = requests.get(url, params=params, headers=HEADERS, timeout=3)
             if resp.status_code != 200:
                 break
 
