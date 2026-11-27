@@ -13,7 +13,8 @@ from datetime import datetime
 import config
 from core import (
     db, mailer, ai_drafter, candidate_profile,
-    email_verifier, timezone_scheduler, autonomous_worker
+    email_verifier, timezone_scheduler, autonomous_worker,
+    linkedin_engine, indeed_engine
 )
 from scrapers import odoo_partners, job_boards
 
@@ -267,11 +268,13 @@ with st.sidebar:
     cand_name = getattr(config, "CANDIDATE_NAME", candidate_profile.CANDIDATE_DATA["personal"]["name"])
     cand_email = getattr(config, "CANDIDATE_EMAIL", candidate_profile.CANDIDATE_DATA["personal"]["email"])
     cand_phone = getattr(config, "CANDIDATE_PHONE", candidate_profile.CANDIDATE_DATA["personal"]["phone"])
+    cand_linkedin = getattr(config, "CANDIDATE_LINKEDIN", "https://linkedin.com/in/adithiya-b-vinu")
     st.markdown(f"**Candidate:** `{cand_name}`")
     st.markdown(f"**Contact:** `{cand_email}`")
     st.markdown(f"**Phone:** `{cand_phone}`")
     st.markdown(f"**Notice Period:** `Immediate (0-Day)`")
     st.markdown(f"**Qualification:** `MCA • MG University (Kerala)`")
+    st.markdown(f"**LinkedIn:** [Adithiya B Vinu]({cand_linkedin})")
 
     st.divider()
 
@@ -510,8 +513,9 @@ for idx, (cname, flag) in enumerate(key_countries):
 st.divider()
 
 # ----------------- MAIN TABS -----------------
-tab_mission, tab_pipeline, tab_history, tab_feed, tab_studio, tab_guardrails = st.tabs([
+tab_mission, tab_radar, tab_pipeline, tab_history, tab_feed, tab_studio, tab_guardrails = st.tabs([
     "📊 Mission Control & Analytics",
+    "🔗 LinkedIn & Indeed Radar",
     "🏢 Lead Pipeline CRM",
     "📜 Sent Applications CRM",
     "🔥 Live Job Feed & Scout",
