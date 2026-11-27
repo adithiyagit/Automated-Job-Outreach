@@ -1414,7 +1414,7 @@ with tab_guardrails:
         with sc1:
             app_pw = st.text_input("Google App Password (16 characters)", value=config.GMAIL_APP_PASSWORD, type="password")
             gem_key = st.text_input("Google Gemini API Key", value=config.GEMINI_API_KEY, type="password")
-            daily_limit = st.number_input("Daily Email Quota Limit", min_value=5, max_value=100, value=config.DAILY_EMAIL_LIMIT)
+            daily_limit = st.number_input("Daily Email Quota Limit", min_value=5, max_value=250, value=config.DAILY_EMAIL_LIMIT)
 
         with sc2:
             min_delay = st.number_input("Min Jitter Delay (seconds)", min_value=30, max_value=600, value=config.MIN_DELAY_SECONDS)

@@ -72,7 +72,7 @@ class TestDatabase(unittest.TestCase):
         stats = db.get_stats_summary(self.db_path)
         self.assertIn("uncontacted_count", stats)
         self.assertIn("daily_limit", stats)
-        self.assertEqual(stats["daily_limit"], 50)
+        self.assertEqual(stats["daily_limit"], config.DAILY_EMAIL_LIMIT)
         self.assertEqual(stats["uncontacted_count"], 0)
 
         # Add an uncontacted partner

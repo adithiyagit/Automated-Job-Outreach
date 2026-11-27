@@ -24,7 +24,7 @@ GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD", "").strip()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "").strip()
 
 # Safety & Anti-Spam Throttling Limits
-DAILY_EMAIL_LIMIT = int(os.getenv("DAILY_EMAIL_LIMIT", "50"))
+DAILY_EMAIL_LIMIT = int(os.getenv("DAILY_EMAIL_LIMIT", "100"))
 MIN_DELAY_SECONDS = int(os.getenv("MIN_DELAY_SECONDS", "90"))
 MAX_DELAY_SECONDS = int(os.getenv("MAX_DELAY_SECONDS", "240"))
 
