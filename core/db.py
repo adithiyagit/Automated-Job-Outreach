@@ -393,6 +393,10 @@ def get_uncontacted_partners_with_emails(
     conn.close()
     return [dict(r) for r in rows]
 
+def get_all_partners(limit: int = 200, db_path: Optional[Path] = None) -> List[Dict[str, Any]]:
+    """Convenience helper to retrieve all partners up to limit."""
+    return get_all_partners_filtered(search="", country="", status_filter="all", limit=limit, db_path=db_path)
+
 def get_stats_summary(db_path: Optional[Path] = None) -> Dict[str, Any]:
     """Returns comprehensive dashboard metrics, pipeline funnel, and country breakdown."""
     conn = get_connection(db_path)
