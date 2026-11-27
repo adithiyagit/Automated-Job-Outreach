@@ -10,7 +10,9 @@ import html
 import threading
 from pathlib import Path
 from datetime import datetime
+import importlib
 import config
+importlib.reload(config)
 from core import (
     db, mailer, ai_drafter, candidate_profile,
     email_verifier, timezone_scheduler, autonomous_worker,
