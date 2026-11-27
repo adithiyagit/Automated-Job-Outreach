@@ -649,7 +649,7 @@ with tab_radar:
             if selected_comp_option == "(Custom Target Company)":
                 target_comp_input = st.text_input("Target Company Name", value="Braintec AG")
                 target_comp_country = st.selectbox("Target Country", [
-                    "India", "Switzerland", "Germany", "United Arab Emirates", 
+                    "Kerala", "India", "Switzerland", "Germany", "United Arab Emirates", 
                     "Saudi Arabia", "United Kingdom", "United States", "Global"
                 ])
             else:
@@ -767,6 +767,7 @@ with tab_radar:
             indeed_country = st.selectbox(
                 "Target Country Feed:",
                 [
+                    "Kerala",
                     "India",
                     "United Arab Emirates",
                     "Saudi Arabia",
@@ -860,7 +861,7 @@ with tab_pipeline:
     with crm_c2:
         lead_country_choice = st.selectbox(
             "Filter Country",
-            ["All Countries", "India", "United Arab Emirates", "Saudi Arabia", "Switzerland", "Germany", "Belgium", "Netherlands", "United Kingdom", "United States", "Singapore", "Australia"]
+            ["All Countries", "Kerala (Kochi/Trivandrum/Calicut)", "India", "United Arab Emirates", "Saudi Arabia", "Switzerland", "Germany", "Belgium", "Netherlands", "United Kingdom", "United States", "Singapore", "Australia"]
         )
     with crm_c3:
         lead_status_choice = st.selectbox(
@@ -1051,6 +1052,7 @@ with tab_studio:
         country_choice = st.selectbox(
             "Select Destination Country Archetype:",
             [
+                "Kerala (Local Tech Hubs - Kochi / Trivandrum / Calicut, 0-Day Notice, MCA)",
                 "India (Domestic Consultancies - 0-Day Notice, MCA, Kerala/Bangalore)",
                 "Switzerland (DACH Europe - Camptocamp/Braintec, SOP rigor, FRD/BRD)",
                 "United Arab Emirates (Middle East - GCC Multi-Store Rollouts, Immediate Relocation)",
@@ -1059,7 +1061,9 @@ with tab_studio:
                 "United States (North America - Rapid Implementation, End-to-End Delivery)"
             ]
         )
-        if "India" in country_choice:
+        if "Kerala" in country_choice:
+            sample_default_comp = "ZestyBeanz Technologies"
+        elif "India" in country_choice:
             sample_default_comp = "Softhealer Technologies"
         elif "Switzerland" in country_choice:
             sample_default_comp = "Camptocamp"
