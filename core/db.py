@@ -369,6 +369,10 @@ def get_uncontacted_partners_with_emails(
         clean_cf = country_filter.lower().strip()
         if clean_cf in ("kerala", "kochi", "trivandrum", "calicut"):
             query += " AND (p.country LIKE '%India%' AND (p.city LIKE '%Kochi%' OR p.city LIKE '%Kerala%' OR p.city LIKE '%Trivandrum%' OR p.city LIKE '%Calicut%' OR p.city LIKE '%Ernakulam%' OR p.partner_tier LIKE '%Kerala%')) "
+        elif clean_cf in ("bangalore", "bengaluru"):
+            query += " AND (p.country LIKE '%India%' AND (p.city LIKE '%Bangalore%' OR p.city LIKE '%Bengaluru%' OR p.partner_tier LIKE '%Bangalore%')) "
+        elif clean_cf in ("hyderabad", "secunderabad", "telangana"):
+            query += " AND (p.country LIKE '%India%' AND (p.city LIKE '%Hyderabad%' OR p.city LIKE '%HITEC%' OR p.city LIKE '%Secunderabad%' OR p.partner_tier LIKE '%Hyderabad%')) "
         elif clean_cf in ("middle_east", "gulf"):
             query += " AND (p.country LIKE '%Emirates%' OR p.country LIKE '%Saudi%' OR p.country LIKE '%Qatar%' OR p.country LIKE '%Oman%' OR p.country LIKE '%Kuwait%' OR p.country LIKE '%Bahrain%') "
         elif clean_cf in ("europe", "dach", "western_europe"):
@@ -476,8 +480,15 @@ def get_all_partners_filtered(
         params.extend([term, term, term])
 
     if country and country != "All":
-        query += " AND country LIKE ? "
-        params.append(f"%{country.strip()}%")
+        if "kerala" in country.lower():
+            query += " AND (city LIKE '%Kochi%' OR city LIKE '%Kerala%' OR city LIKE '%Trivandrum%' OR city LIKE '%Calicut%' OR partner_tier LIKE '%Kerala%') "
+        elif "bangalore" in country.lower() or "bengaluru" in country.lower():
+            query += " AND (city LIKE '%Bangalore%' OR city LIKE '%Bengaluru%' OR partner_tier LIKE '%Bangalore%') "
+        elif "hyderabad" in country.lower():
+            query += " AND (city LIKE '%Hyderabad%' OR city LIKE '%HITEC%' OR city LIKE '%Secunderabad%' OR partner_tier LIKE '%Hyderabad%') "
+        else:
+            query += " AND country LIKE ? "
+            params.append(f"%{country.strip()}%")
 
     if status_filter and status_filter != "All":
         query += " AND status = ? "

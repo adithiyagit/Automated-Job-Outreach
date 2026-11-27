@@ -16,7 +16,11 @@ def get_region_category(country_str: str) -> str:
 
     if any(k in c for k in ["kerala", "kochi", "cochin", "trivandrum", "thiruvananthapuram", "calicut", "kozhikode", "ernakulam", "infopark", "technopark", "cyberpark", "malappuram", "thrissur"]):
         return "kerala"
-    elif any(k in c for k in ["india", "bharat", "bengaluru", "bangalore", "mumbai", "pune", "ahmedabad", "delhi", "gurgaon", "noida", "hyderabad", "chennai"]):
+    elif any(k in c for k in ["bangalore", "bengaluru", "electronic city", "whitefield", "manyata", "outer ring road"]):
+        return "bangalore"
+    elif any(k in c for k in ["hyderabad", "secunderabad", "hitec city", "madhapur", "gachibowli", "telangana"]):
+        return "hyderabad"
+    elif any(k in c for k in ["india", "bharat", "mumbai", "pune", "ahmedabad", "delhi", "gurgaon", "noida", "chennai"]):
         return "india"
     elif any(k in c for k in ["emirates", "uae", "dubai", "abu dhabi", "saudi", "ksa", "qatar", "oman", "bahrain", "kuwait"]):
         return "middle_east"
@@ -75,6 +79,74 @@ Warm regards,
 ERP Functional Consultant | Project Coordinator
 Email: {p['email']} | Phone: {p['phone']}
 Location: {p['location']} (Immediate Availability)
+LinkedIn: {p['linkedin']}
+""".strip()
+
+    # 0B. BANGALORE TECH HUB (Bengaluru / Electronic City / Whitefield / Manyata / ORR)
+    # Focus: Immediate 0-Day Joiner, Immediate Relocation Ready to Bangalore, MCA from Marian College Kuttikanam, live 9-store Odoo retail rollout
+    elif region == "bangalore":
+        subject = f"Application: {job_title} — {p['name']} (Immediate 0-Day Joiner | Bangalore Relocation Ready)"
+        body = f"""Dear Hiring Team at {company_name},
+
+I hope this email finds you well. I am writing to apply for the position of {job_title} or Business Analyst supporting {company_name}'s ERP consulting and technology teams in Bangalore.
+
+I bring hands-on functional experience across the complete ERP lifecycle on a live, multi-module Odoo rollout. Currently serving as Junior Project Manager cum Functional Consultant at Empire AE IT Services, my core contributions include:
+• Tested and validated end-to-end Odoo workflows across six core modules: CRM, Sales, Purchase, Inventory, Accounts, Manufacturing, and HR.
+• Authored BRD/FRD-aligned SOPs, process workflows, and approval matrices, converting business requirements into validated configurations.
+• Coordinated client UAT from test planning to defect logging in Jira and final sign-off documentation.
+• Led rotational batch user training and hypercare support across nine store branches during a live retail rollout.
+
+I hold an MCA (Master of Computer Applications) from Marian College Kuttikanam (MG University, Kerala) with dual experience across Odoo and ERPNext/Python SDLC workflows.
+
+Key Logistics for Bangalore Deployment:
+• Notice Period: Immediate Joiner (0 days notice period)
+• Mobility: Ready to relocate to Bangalore immediately (available for on-site onboarding across Electronic City, Whitefield, Manyata, or Outer Ring Road)
+• Remote/Hybrid: Fully equipped for hybrid or remote work arrangements
+
+I have attached my resume for your review. I would welcome the opportunity to discuss how my implementation background can support {company_name}'s client deliverables.
+
+Thank you for your time and consideration.
+
+Warm regards,
+
+{p['name']}
+ERP Functional Consultant | Project Coordinator
+Email: {p['email']} | Phone: {p['phone']}
+Location: {p['location']} (Immediate Relocation Ready to Bangalore)
+LinkedIn: {p['linkedin']}
+""".strip()
+
+    # 0C. HYDERABAD TECH HUB (HITEC City / Madhapur / Gachibowli)
+    # Focus: Immediate 0-Day Joiner, Immediate Relocation Ready to Hyderabad, MCA from Marian College Kuttikanam, live 9-store Odoo retail rollout
+    elif region == "hyderabad":
+        subject = f"Application: {job_title} — {p['name']} (Immediate 0-Day Joiner | Hyderabad Relocation Ready)"
+        body = f"""Dear Hiring Team at {company_name},
+
+I hope this email finds you well. I am writing to express my strong interest in the {job_title} or Business Analyst role supporting {company_name}'s ERP practice in Hyderabad.
+
+I bring hands-on functional experience across the complete ERP lifecycle on a live, multi-module Odoo rollout. In my current role as Junior Project Manager cum Functional Consultant at Empire AE IT Services, my core deliverables include:
+• Tested and validated end-to-end Odoo workflows across six core modules: CRM, Sales, Purchase, Inventory, Accounts, Manufacturing, and HR.
+• Authored BRD/FRD-aligned SOPs, process workflows, and approval matrices.
+• Managed client UAT from test planning to defect logging in Jira and final sign-off documentation.
+• Led rotational batch user enablement and hypercare support across nine store locations during a live retail rollout.
+
+I hold an MCA (Master of Computer Applications) from Marian College Kuttikanam (MG University, Kerala) with dual experience across Odoo and ERPNext/Python SDLC workflows.
+
+Key Logistics for Hyderabad Deployment:
+• Notice Period: Immediate Joiner (0 days notice period)
+• Mobility: Ready to relocate to Hyderabad immediately (ready for on-site reporting across HITEC City, Madhapur, or Gachibowli)
+• Immediate Joining: 0-day notice period ensures zero onboarding delays
+
+I have attached my resume for your review. I would welcome a 10-minute introductory conversation to discuss how I can contribute to {company_name}'s ongoing client projects.
+
+Thank you for your time and consideration.
+
+Warm regards,
+
+{p['name']}
+ERP Functional Consultant | Project Coordinator
+Email: {p['email']} | Phone: {p['phone']}
+Location: {p['location']} (Immediate Relocation Ready to Hyderabad)
 LinkedIn: {p['linkedin']}
 """.strip()
 

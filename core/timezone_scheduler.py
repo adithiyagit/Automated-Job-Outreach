@@ -54,6 +54,10 @@ COUNTRY_TIMEZONE_MAP = {
     "kochi": "Asia/Kolkata",
     "trivandrum": "Asia/Kolkata",
     "calicut": "Asia/Kolkata",
+    "bangalore": "Asia/Kolkata",
+    "bengaluru": "Asia/Kolkata",
+    "hyderabad": "Asia/Kolkata",
+    "secunderabad": "Asia/Kolkata",
     "malaysia": "Asia/Kuala_Lumpur",
 
     # Default fallback
